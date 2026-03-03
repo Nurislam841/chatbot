@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./reports:/usr/src/app/reports
+    ports:
+      - "8899:8899"
+    networks:
+      - default
+      - database_network
+
+networks:
+  database_network:
+    external: true
+    name: app_default
